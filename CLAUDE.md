@@ -36,4 +36,14 @@ Salin APK terbaru ke `ALDEF-POWER.apk` di root proyek setelah build.
   (`RealmeSync`), karena API realme dikunci izin signature. Mode Admin (device owner) tidak
   dipakai di HP pengguna (ada akun & pengguna kedua / WhatsApp clone).
 - Media disembunyikan ke `/storage/emulated/0/.aldef_vault` (+ `.nomedia`, `index.json`).
-- `VaultActivity.SECURE` harus `true` di build final (FLAG_SECURE).
+- `VaultActivity.SECURE` harus `true` di build final (FLAG_SECURE; juga dipakai PinActivity,
+  IntruderLogActivity, MediaViewerActivity).
+- Ruang Privat dibuka lewat `PinActivity` (kode di-hash PBKDF2, `VaultPin`). Dua brankas:
+  `SPACE_REAL` (`.aldef_vault`, sinkron realme) dan `SPACE_DECOY` (`.aldef_media`, tanpa realme,
+  tampilan identik — jangan tampilkan apa pun yang membocorkan brankas asli di mode pengecoh).
+- Fitur Ekstra (`FeaturesActivity`, prefs `Features`) dijalankan oleh `FeatureHub` di dalam
+  layanan aksesibilitas: `BackTapDetector` (aktif hanya saat layar menyala), `FloatingBall`
+  (TYPE_ACCESSIBILITY_OVERLAY), pemicu `ChargingActivity` (ACTION_POWER_CONNECTED).
+- Selfie Penyusup: `AdminReceiver.onPasswordFailed` (admin perangkat biasa, policy `watch-login`)
+  -> `IntruderCaptureActivity` (transparan, showWhenLocked) -> `IntruderCamera` (Camera2) ->
+  `IntruderStore` (filesDir/intruders). Aldef System = `com.aldef.system`.

@@ -40,6 +40,7 @@ public class RebootAccessibilityService extends AccessibilityService {
     private Set<String> launchers;
     private BroadcastReceiver screenOffReceiver;
     private View overlay;
+    private FeatureHub features;
 
     @Override
     protected void onServiceConnected() {
@@ -53,6 +54,8 @@ public class RebootAccessibilityService extends AccessibilityService {
             }
         };
         registerReceiver(screenOffReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        features = new FeatureHub(this);
+        features.start();
     }
 
     private void refreshLaunchers() {
@@ -339,6 +342,7 @@ public class RebootAccessibilityService extends AccessibilityService {
     @Override
     public void onDestroy() {
         instance = null;
+        if (features != null) features.stop();
         hideOverlay();
         handler.removeCallbacksAndMessages(null);
         if (screenOffReceiver != null) {

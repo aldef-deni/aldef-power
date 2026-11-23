@@ -32,6 +32,8 @@ final class AppHider {
     private static final String PREFS = "app_hider";
     private static final String KEY_HIDDEN = "hidden";
     private static final String KEY_TEMP = "temp";
+    /** Daftar aplikasi brankas pengecoh (hanya dicatat, tidak disembunyikan sungguhan). */
+    private static final String KEY_DECOY = "decoy";
 
     private AppHider() {}
 
@@ -173,11 +175,15 @@ final class AppHider {
 
     /** Aplikasi yang bisa disembunyikan (punya ikon di launcher, belum tersembunyi). */
     static List<VaultItem> listVisibleApps(Context c) {
+        return listVisibleApps(c, VaultPin.SPACE_REAL);
+    }
+
+    static List<VaultItem> listVisibleApps(Context c, int space) {
         PackageManager pm = c.getPackageManager();
         Set<String> exclude = launcherPackages(c);
         exclude.add(c.getPackageName());
         exclude.add("com.android.settings");
-        exclude.addAll(get(c, KEY_HIDDEN));
+        exclude.addAll(get(c, space == VaultPin.SPACE_DECOY ? KEY_DECOY : KEY_HIDDEN));
 
         Intent main = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
         Map<String, VaultItem> map = new LinkedHashMap<>();
@@ -194,10 +200,48 @@ final class AppHider {
         return list;
     }
 
+    // ------------------------------------------------------------ brankas pengecoh
+
+    static synchronized void addDecoy(Context c, String pkg) {
+        Set<String> s = get(c, KEY_DECOY);
+        s.add(pkg);
+        put(c, KEY_DECOY, s);
+    }
+
+    static synchronized void removeDecoy(Context c, String pkg) {
+        Set<String> s = get(c, KEY_DECOY);
+        s.remove(pkg);
+        put(c, KEY_DECOY, s);
+    }
+
+    static int clearDecoy(Context c) {
+        int n = get(c, KEY_DECOY).size();
+        put(c, KEY_DECOY, new HashSet<>());
+        return n;
+    }
+
+    /** Buka aplikasi biasa (dipakai brankas pengecoh). */
+    static void launchPlain(Activity a, String pkg) {
+        Intent li = a.getPackageManager().getLaunchIntentForPackage(pkg);
+        if (li == null) {
+            Toast.makeText(a, "Aplikasi tidak bisa dibuka", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        a.startActivity(li.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
     /** Aplikasi yang sedang disembunyikan. */
     static List<VaultItem> listHiddenApps(Context c) {
+        return listApps(c, KEY_HIDDEN);
+    }
+
+    static List<VaultItem> listDecoyApps(Context c) {
+        return listApps(c, KEY_DECOY);
+    }
+
+    private static List<VaultItem> listApps(Context c, String key) {
         PackageManager pm = c.getPackageManager();
-        Set<String> hidden = get(c, KEY_HIDDEN);
+        Set<String> hidden = get(c, key);
         List<VaultItem> list = new ArrayList<>();
         boolean changed = false;
         for (String pkg : new ArrayList<>(hidden)) {
@@ -211,7 +255,7 @@ final class AppHider {
                 changed = true;
             }
         }
-        if (changed) put(c, KEY_HIDDEN, hidden);
+        if (changed) put(c, key, hidden);
         list.sort((x, y) -> x.label.compareToIgnoreCase(y.label));
         return list;
     }

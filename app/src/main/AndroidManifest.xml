@@ -12,6 +12,11 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29" />
+    <!-- Selfie Penyusup -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
     <!-- Daftar aplikasi untuk disembunyikan -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
@@ -53,6 +58,46 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/Theme.AldefPower.Main" />
+
+        <activity
+            android:name=".PinActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AldefPower.Main" />
+
+        <activity
+            android:name=".FeaturesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AldefPower.Main" />
+
+        <activity
+            android:name=".IntruderLogActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AldefPower.Main" />
+
+        <!-- Selfie Penyusup: transparan, muncul sesaat di atas layar kunci -->
+        <activity
+            android:name=".IntruderCaptureActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.aldef.power.intruder"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Animasi cas neon: layar penuh, juga di atas layar kunci -->
+        <activity
+            android:name=".ChargingActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.aldef.power.charging"
+            android:theme="@style/Theme.AldefPower.Viewer"
+            android:turnScreenOn="true" />
 
         <activity
             android:name=".MediaViewerActivity"

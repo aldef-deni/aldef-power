@@ -40,6 +40,8 @@ import java.util.UUID;
 final class MediaVault {
 
     private static final String DIR = ".aldef_vault";
+    /** Brankas pengecoh (nama netral, tidak mencurigakan). */
+    private static final String DIR_DECOY = ".aldef_media";
     private static final String INDEX = "index.json";
 
     /** Path yang baru saja dipindahkan (MediaStore butuh waktu untuk memperbarui). */
@@ -49,7 +51,13 @@ final class MediaVault {
 
     @SuppressWarnings("deprecation")
     static File dir() {
-        File d = new File(Environment.getExternalStorageDirectory(), DIR);
+        return dir(VaultPin.SPACE_REAL);
+    }
+
+    @SuppressWarnings("deprecation")
+    static File dir(int space) {
+        File d = new File(Environment.getExternalStorageDirectory(),
+                space == VaultPin.SPACE_DECOY ? DIR_DECOY : DIR);
         if (!d.exists()) d.mkdirs();
         File nomedia = new File(d, ".nomedia");
         if (!nomedia.exists()) {
@@ -99,7 +107,8 @@ final class MediaVault {
         String sel = MediaStore.Files.FileColumns.MEDIA_TYPE + " IN ("
                 + MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE + ","
                 + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO + ")";
-        String vaultPath = dir().getAbsolutePath();
+        String vaultPath = dir(VaultPin.SPACE_REAL).getAbsolutePath();
+        String decoyPath = dir(VaultPin.SPACE_DECOY).getAbsolutePath();
 
         try (Cursor cur = c.getContentResolver().query(MediaStore.Files.getContentUri("external"),
                 proj, sel, null, MediaStore.MediaColumns.DATE_ADDED + " DESC")) {
@@ -107,7 +116,8 @@ final class MediaVault {
             while (cur.moveToNext()) {
                 long id = cur.getLong(0);
                 String path = cur.getString(1);
-                if (path == null || path.startsWith(vaultPath) || recentlyMoved.contains(path)) continue;
+                if (path == null || path.startsWith(vaultPath) || path.startsWith(decoyPath)
+                        || recentlyMoved.contains(path)) continue;
                 String name = cur.getString(2);
                 boolean video = cur.getInt(3) == MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
                 VaultItem it = new VaultItem(false, "m" + id, name != null ? name : new File(path).getName());
@@ -127,9 +137,9 @@ final class MediaVault {
 
     // ------------------------------------------------------------ sembunyikan / tampilkan
 
-    static synchronized int hide(Context c, List<VaultItem> items) {
-        File d = dir();
-        JSONArray index = readIndex();
+    static synchronized int hide(Context c, List<VaultItem> items, int space) {
+        File d = dir(space);
+        JSONArray index = readIndex(d);
         List<String> scan = new ArrayList<>();
         int n = 0;
         for (VaultItem it : items) {
@@ -151,7 +161,7 @@ final class MediaVault {
                 index.put(o);
             } catch (JSONException ignored) {
             }
-            writeIndex(index);   // simpan tiap file agar tidak ada yang "hilang jejak"
+            writeIndex(d, index);   // simpan tiap file agar tidak ada yang "hilang jejak"
             recentlyMoved.add(src.getAbsolutePath());
             if (it.contentUri != null) {
                 try {
@@ -166,12 +176,12 @@ final class MediaVault {
         return n;
     }
 
-    static synchronized int unhide(Context c, List<VaultItem> items) {
+    static synchronized int unhide(Context c, List<VaultItem> items, int space) {
         Set<String> ids = new HashSet<>();
         for (VaultItem it : items) if (it.vaultId != null) ids.add(it.vaultId);
 
-        File d = dir();
-        JSONArray index = readIndex();
+        File d = dir(space);
+        JSONArray index = readIndex(d);
         JSONArray keep = new JSONArray();
         List<String> scan = new ArrayList<>();
         int n = 0;
@@ -194,14 +204,14 @@ final class MediaVault {
                 keep.put(o);
             }
         }
-        writeIndex(keep);
+        writeIndex(d, keep);
         scan(c, scan);
         return n;
     }
 
-    static List<VaultItem> listHidden() {
-        File d = dir();
-        JSONArray index = readIndex();
+    static List<VaultItem> listHidden(int space) {
+        File d = dir(space);
+        JSONArray index = readIndex(d);
         List<VaultItem> out = new ArrayList<>();
         for (int i = 0; i < index.length(); i++) {
             JSONObject o = index.optJSONObject(i);
@@ -263,8 +273,8 @@ final class MediaVault {
                 paths.toArray(new String[0]), null, null);
     }
 
-    private static JSONArray readIndex() {
-        File f = new File(dir(), INDEX);
+    private static JSONArray readIndex(File d) {
+        File f = new File(d, INDEX);
         if (!f.exists()) return new JSONArray();
         try (InputStream in = new FileInputStream(f)) {
             byte[] data = new byte[(int) f.length()];
@@ -276,8 +286,7 @@ final class MediaVault {
         }
     }
 
-    private static void writeIndex(JSONArray index) {
-        File d = dir();
+    private static void writeIndex(File d, JSONArray index) {
         File tmp = new File(d, INDEX + ".tmp");
         try (OutputStream out = new FileOutputStream(tmp)) {
             out.write(index.toString().getBytes(StandardCharsets.UTF_8));

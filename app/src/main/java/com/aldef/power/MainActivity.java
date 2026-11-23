@@ -36,7 +36,9 @@ public class MainActivity extends Activity {
 
         // Fitur rahasia: ketuk 5x
         findViewById(R.id.tvFooter).setOnClickListener(secretTap(() -> openVault(VaultActivity.MODE_MANAGE)));
-        findViewById(R.id.ivLogo).setOnClickListener(secretTap(() -> openVault(VaultActivity.MODE_VAULT)));
+        findViewById(R.id.ivLogo).setOnClickListener(secretTap(() -> PinActivity.openGate(this)));
+        findViewById(R.id.btnFeatures).setOnClickListener(v ->
+                startActivity(new Intent(this, FeaturesActivity.class)));
     }
 
     @Override

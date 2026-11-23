@@ -39,6 +39,18 @@ Di balik tampilannya yang sederhana, ALDEF POWER juga menyimpan **Ruang Privat**
 - **Privasi** — Ruang Privat dilindungi dari screenshot dan tidak tampil di layar Recent.
 - **Tampilan premium** — tema gelap bernuansa brand Aldef, splash animasi, dan tombol bergradasi.
 
+### Fitur Ekstra
+
+Diatur dari **Status & Pengaturan → Fitur Ekstra**:
+
+| Fitur | Cara kerja |
+| --- | --- |
+| **Ketuk Punggung HP** | Akselerometer mendeteksi ketukan di punggung HP: **2×** kunci layar · **3×** buka ALDEF POWER · **4×** buka Aldef System. Sensitivitas Rendah/Sedang/Tinggi + area uji ketukan. |
+| **Bola Power Melayang** | Tombol neon yang mengambang: **ketuk** kunci layar · **tahan** menu power · **geser cepat** screenshot · **seret** untuk memindahkan. |
+| **Selfie Penyusup** | Kamera depan memotret diam-diam saat **PIN layar kunci** atau **kode Ruang Privat** salah, lengkap dengan cap waktu. Foto ada di Ruang Privat → ⋮ → *Log Penyusup*. |
+| **Brankas Pengecoh** | Ruang Privat kini dibuka dengan **kode**. Kode asli membuka brankas sungguhan; kode pengecoh membuka brankas palsu bertampilan identik. Diatur dari Ruang Privat → ⋮ → *Brankas Pengecoh*. |
+| **Animasi Cas Neon** | Animasi premium saat charger dicolok (juga di layar kunci): cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
+
 ### Fitur rahasia
 
 Tidak ada tombol yang terlihat. Ketuk cepat **5×** (jeda < 0,7 detik):
@@ -46,7 +58,7 @@ Tidak ada tombol yang terlihat. Ketuk cepat **5×** (jeda < 0,7 detik):
 | Ketuk 5× | Membuka | Fungsi |
 | --- | --- | --- |
 | Teks footer **ALDEF TECH** | **Sembunyikan** | Tab *Aplikasi* & *Media*, pilih lebih dari satu, lalu **Sembunyikan** |
-| **Logo ALDEF** di bagian atas | **Ruang Privat** | Buka item tersembunyi; tahan untuk memilih, lalu **Tampilkan Kembali** |
+| **Logo ALDEF** di bagian atas | **Papan kode → Ruang Privat** | Masukkan kode (asli / pengecoh). Buka item tersembunyi; tahan untuk memilih, lalu **Tampilkan Kembali** |
 
 ## Persyaratan
 

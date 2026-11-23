@@ -39,6 +39,8 @@ public class VaultActivity extends Activity {
     static final String EXTRA_MODE = "mode";
     static final int MODE_MANAGE = 0;
     static final int MODE_VAULT = 1;
+    /** Brankas: VaultPin.SPACE_REAL (asli) atau VaultPin.SPACE_DECOY (pengecoh). */
+    static final String EXTRA_SPACE = "space";
 
     /** Cegah screenshot & sembunyikan isi di layar Recent. */
     static final boolean SECURE = true;
@@ -65,6 +67,7 @@ public class VaultActivity extends Activity {
     private ItemAdapter adapter;
 
     private int mode;
+    private int space = VaultPin.SPACE_REAL;
     private int tab = TAB_APPS;
     private boolean selectMode;
     private boolean busy;
@@ -81,6 +84,7 @@ public class VaultActivity extends Activity {
         if (SECURE) getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_vault);
         mode = getIntent().getIntExtra(EXTRA_MODE, MODE_MANAGE);
+        space = getIntent().getIntExtra(EXTRA_SPACE, VaultPin.SPACE_REAL);
         thumbs = new ThumbLoader(this);
 
         grid = findViewById(R.id.grid);
@@ -98,8 +102,9 @@ public class VaultActivity extends Activity {
         ivEmptyIcon = findViewById(R.id.ivEmptyIcon);
         btnEmptyAction = findViewById(R.id.btnEmptyAction);
 
-        ((TextView) findViewById(R.id.tvTitle)).setText(
-                mode == MODE_MANAGE ? "Sembunyikan" : "Ruang Privat");
+        // Brankas pengecoh sengaja berjudul sama persis dengan Ruang Privat asli
+        ((TextView) findViewById(R.id.tvTitle)).setText(mode == MODE_VAULT ? "Ruang Privat"
+                : isDecoy() ? "Isi Pengecoh" : "Sembunyikan");
         findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
         btnMore.setVisibility(mode == MODE_VAULT ? View.VISIBLE : View.GONE);
         btnMore.setOnClickListener(v -> showMoreMenu());
@@ -124,6 +129,10 @@ public class VaultActivity extends Activity {
 
         setupSearch();
         applyTabStyle();
+    }
+
+    private boolean isDecoy() {
+        return space == VaultPin.SPACE_DECOY;
     }
 
     // ------------------------------------------------------------ cari & filter
@@ -326,7 +335,7 @@ public class VaultActivity extends Activity {
         final int token = ++loadToken;
         final int t = tab;
         worker.execute(() -> {
-            if (mode == MODE_VAULT) AppHider.rehideTemporary(this);
+            if (mode == MODE_VAULT && !isDecoy()) AppHider.rehideTemporary(this);
             Result r = load(t);
             runOnUiThread(() -> {
                 if (token == loadToken && !isFinishing()) show(r);
@@ -339,17 +348,17 @@ public class VaultActivity extends Activity {
         if (t == TAB_APPS) {
             r.icon = R.drawable.ic_apps;
             if (mode == MODE_MANAGE) {
-                if (!AppHider.isSupported(this)) {
+                if (!isDecoy() && !AppHider.isSupported(this)) {
                     r.icon = R.drawable.ic_shield;
                     r.title = "Tidak didukung";
                     r.msg = "HP ini tidak memiliki fitur Hide apps bawaan.";
                     return r;
                 }
-                r.list = AppHider.listVisibleApps(this);
+                r.list = AppHider.listVisibleApps(this, space);
                 r.title = "Tidak ada aplikasi";
                 r.msg = "Semua aplikasi sudah disembunyikan.";
             } else {
-                r.list = AppHider.listHiddenApps(this);
+                r.list = isDecoy() ? AppHider.listDecoyApps(this) : AppHider.listHiddenApps(this);
                 r.title = "Belum ada aplikasi tersembunyi";
                 r.msg = "Aplikasi yang Anda sembunyikan akan muncul di sini.";
             }
@@ -367,7 +376,7 @@ public class VaultActivity extends Activity {
                 r.title = "Galeri kosong";
                 r.msg = "Tidak ada foto atau video.";
             } else {
-                r.list = MediaVault.listHidden();
+                r.list = MediaVault.listHidden(space);
                 r.title = "Belum ada media tersembunyi";
                 r.msg = "Foto & video yang Anda sembunyikan akan muncul di sini.";
             }
@@ -377,7 +386,7 @@ public class VaultActivity extends Activity {
 
     private void show(Result r) {
         progress.setVisibility(View.GONE);
-        boolean realmeApps = tab == TAB_APPS && AppHider.usesRealme(this);
+        boolean realmeApps = !isDecoy() && tab == TAB_APPS && AppHider.usesRealme(this);
         View banner = findViewById(R.id.infoBanner);
         banner.setVisibility(realmeApps ? View.VISIBLE : View.GONE);
         View btnSync = findViewById(R.id.btnSync);
@@ -414,7 +423,8 @@ public class VaultActivity extends Activity {
             return;
         }
         if (it.app) {
-            AppHider.launch(this, it.key);
+            if (isDecoy()) AppHider.launchPlain(this, it.key);
+            else AppHider.launch(this, it.key);
         } else {
             startActivity(new Intent(this, MediaViewerActivity.class)
                     .putExtra(MediaViewerActivity.EXTRA_PATH, it.path)
@@ -477,7 +487,9 @@ public class VaultActivity extends Activity {
         for (VaultItem it : allItems) if (selected.contains(it.key)) chosen.add(it);
 
         boolean hiding = mode == MODE_MANAGE;
-        if (tab == TAB_APPS && AppHider.usesRealme(this)) {
+        if (isDecoy()) {
+            runAction(chosen, false);   // pengecoh: hanya dicatat, tanpa realme
+        } else if (tab == TAB_APPS && AppHider.usesRealme(this)) {
             // Mode realme: catat di ALDEF, lalu buka "Hide apps" realme untuk menyalakan/mematikan sakelar
             StringBuilder names = new StringBuilder();
             for (VaultItem it : chosen) names.append("\n•  ").append(it.label);
@@ -507,12 +519,18 @@ public class VaultActivity extends Activity {
         final boolean apps = tab == TAB_APPS;
         worker.execute(() -> {
             int ok = 0;
-            if (apps) {
+            if (apps && isDecoy()) {
+                for (VaultItem it : chosen) {
+                    if (hiding) AppHider.addDecoy(this, it.key);
+                    else AppHider.removeDecoy(this, it.key);
+                    ok++;
+                }
+            } else if (apps) {
                 for (VaultItem it : chosen) {
                     if (hiding ? AppHider.hide(this, it.key) : AppHider.unhide(this, it.key)) ok++;
                 }
             } else {
-                ok = hiding ? MediaVault.hide(this, chosen) : MediaVault.unhide(this, chosen);
+                ok = hiding ? MediaVault.hide(this, chosen, space) : MediaVault.unhide(this, chosen, space);
             }
             final int done = ok, total = chosen.size();
             runOnUiThread(() -> {
@@ -549,6 +567,28 @@ public class VaultActivity extends Activity {
     private void showMoreMenu() {
         List<String> labels = new ArrayList<>();
         List<Runnable> actions = new ArrayList<>();
+
+        if (isDecoy()) {
+            // Menu pengecoh terlihat wajar, tidak membocorkan keberadaan brankas asli
+            labels.add("Ubah kode Ruang Privat");
+            actions.add(() -> PinActivity.start(this, PinActivity.MODE_SET_DECOY));
+            labels.add("Kosongkan daftar aplikasi");
+            actions.add(() -> {
+                int n = AppHider.clearDecoy(this);
+                Toast.makeText(this, n + " aplikasi dikeluarkan dari Ruang Privat", Toast.LENGTH_SHORT).show();
+                reload();
+            });
+            dialog().setItems(labels.toArray(new String[0]), (d, which) -> actions.get(which).run()).show();
+            return;
+        }
+
+        int intruders = IntruderStore.count(this);
+        labels.add("Log Penyusup" + (intruders > 0 ? " (" + intruders + ")" : ""));
+        actions.add(() -> startActivity(new Intent(this, IntruderLogActivity.class)));
+        labels.add("Brankas Pengecoh");
+        actions.add(this::showDecoyMenu);
+        labels.add("Ubah kode Ruang Privat");
+        actions.add(() -> PinActivity.start(this, PinActivity.MODE_SET_REAL));
         if (AppHider.usesRealme(this)) {
             labels.add("Sinkronkan dengan realme");
             actions.add(this::startRealmeSync);
@@ -568,6 +608,44 @@ public class VaultActivity extends Activity {
             actions.add(this::confirmReleaseAdmin);
         }
         dialog().setItems(labels.toArray(new String[0]), (d, which) -> actions.get(which).run()).show();
+    }
+
+    /** Pengaturan brankas pengecoh (hanya dari Ruang Privat asli). */
+    private void showDecoyMenu() {
+        if (!VaultPin.has(this, VaultPin.SPACE_DECOY)) {
+            dialog().setTitle("Brankas Pengecoh")
+                    .setMessage("Buat kode kedua. Jika Anda dipaksa membuka Ruang Privat, masukkan kode "
+                            + "ini: yang terbuka adalah brankas palsu dengan tampilan sama persis, "
+                            + "berisi item biasa pilihan Anda.")
+                    .setPositiveButton("Buat Kode Pengecoh",
+                            (d, w) -> PinActivity.start(this, PinActivity.MODE_SET_DECOY))
+                    .setNegativeButton("Nanti", null)
+                    .show();
+            return;
+        }
+        String[] opts = {"Isi brankas pengecoh", "Lihat brankas pengecoh", "Ubah kode pengecoh",
+                "Hapus kode pengecoh"};
+        dialog().setTitle("Brankas Pengecoh").setItems(opts, (d, which) -> {
+            if (which == 0) {
+                startActivity(new Intent(this, VaultActivity.class)
+                        .putExtra(EXTRA_MODE, MODE_MANAGE).putExtra(EXTRA_SPACE, VaultPin.SPACE_DECOY));
+            } else if (which == 1) {
+                startActivity(new Intent(this, VaultActivity.class)
+                        .putExtra(EXTRA_MODE, MODE_VAULT).putExtra(EXTRA_SPACE, VaultPin.SPACE_DECOY));
+            } else if (which == 2) {
+                PinActivity.start(this, PinActivity.MODE_SET_DECOY);
+            } else {
+                dialog().setTitle("Hapus kode pengecoh?")
+                        .setMessage("Isi brankas pengecoh tetap tersimpan dan muncul lagi jika Anda "
+                                + "membuat kode pengecoh baru.")
+                        .setPositiveButton("Hapus", (d2, w2) -> {
+                            VaultPin.clear(this, VaultPin.SPACE_DECOY);
+                            Toast.makeText(this, "Kode pengecoh dihapus", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("Batal", null)
+                        .show();
+            }
+        }).show();
     }
 
     @SuppressWarnings("deprecation")
