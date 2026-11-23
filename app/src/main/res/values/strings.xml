@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ALDEF POWER</string>
+    <string name="tile_restart">Restart HP</string>
+    <string name="tile_lock">Kunci Layar</string>
+    <string name="sc_restart">Restart</string>
+    <string name="sc_lock">Kunci Layar</string>
+    <string name="sc_power">Menu Power</string>
+    <string name="accessibility_desc">Dipakai ALDEF POWER untuk membuka menu power (restart), mengunci layar, dan membuka menu Hide apps realme. Isi layar hanya dibaca sesaat ketika Anda membuka Hide apps dari ALDEF POWER.</string>
+</resources>

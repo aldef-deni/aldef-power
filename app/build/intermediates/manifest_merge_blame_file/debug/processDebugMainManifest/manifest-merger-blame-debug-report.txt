@@ -1,0 +1,216 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.aldef.power"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <!-- Sembunyikan foto & video -->
+12    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+12-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:6:5-8:40
+12-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:7:9-66
+13    <uses-permission
+13-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:9:5-11:38
+14        android:name="android.permission.READ_EXTERNAL_STORAGE"
+14-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:10:9-64
+15        android:maxSdkVersion="32" />
+15-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:11:9-35
+16    <uses-permission
+16-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:12:5-14:38
+17        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+17-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:13:9-65
+18        android:maxSdkVersion="29" />
+18-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:14:9-35
+19    <!-- Daftar aplikasi untuk disembunyikan -->
+20    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+20-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:16:5-18:53
+20-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:17:9-61
+21
+22    <application
+22-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:20:5-119:19
+23        android:allowBackup="false"
+23-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:21:9-36
+24        android:debuggable="true"
+25        android:extractNativeLibs="false"
+26        android:icon="@mipmap/ic_launcher"
+26-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:23:9-43
+27        android:label="@string/app_name"
+27-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:25:9-41
+28        android:requestLegacyExternalStorage="true"
+28-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:22:9-52
+29        android:roundIcon="@mipmap/ic_launcher"
+29-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:24:9-48
+30        android:theme="@android:style/Theme.Material.Light.DarkActionBar" >
+30-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:26:9-74
+31
+32        <!-- Splash: hitam polos, lalu gambar ALDEF POWER + loading 3 detik -->
+33        <activity
+33-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:29:9-41:20
+34            android:name="com.aldef.power.SplashActivity"
+34-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:30:13-43
+35            android:exported="true"
+35-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:31:13-36
+36            android:screenOrientation="portrait"
+36-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:32:13-49
+37            android:theme="@style/Theme.AldefPower.Splash" >
+37-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:33:13-59
+38            <intent-filter>
+38-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:34:13-37:29
+39                <action android:name="android.intent.action.MAIN" />
+39-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:35:17-69
+39-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:35:25-66
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:36:17-77
+41-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:36:27-74
+42            </intent-filter>
+43
+44            <meta-data
+44-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:38:13-40:53
+45                android:name="android.app.shortcuts"
+45-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:39:17-53
+46                android:resource="@xml/shortcuts" />
+46-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:40:17-50
+47        </activity>
+48        <activity
+48-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:43:9-47:60
+49            android:name="com.aldef.power.MainActivity"
+49-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:44:13-41
+50            android:exported="false"
+50-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:45:13-37
+51            android:screenOrientation="portrait"
+51-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:46:13-49
+52            android:theme="@style/Theme.AldefPower.Main" />
+52-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:47:13-57
+53
+54        <!-- Sembunyikan (footer 5x) & Ruang Privat (logo 5x) -->
+55        <activity
+55-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:50:9-55:60
+56            android:name="com.aldef.power.VaultActivity"
+56-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:51:13-42
+57            android:exported="false"
+57-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:52:13-37
+58            android:screenOrientation="portrait"
+58-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:53:13-49
+59            android:theme="@style/Theme.AldefPower.Main"
+59-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:55:13-57
+60            android:windowSoftInputMode="stateHidden|adjustResize" />
+60-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:54:13-67
+61        <activity
+61-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:57:9-60:62
+62            android:name="com.aldef.power.MediaViewerActivity"
+62-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:58:13-48
+63            android:exported="false"
+63-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:59:13-37
+64            android:theme="@style/Theme.AldefPower.Viewer" />
+64-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:60:13-59
+65
+66        <!-- Activity transparan untuk shortcut & tile: Restart / Kunci / Menu Power -->
+67        <activity
+67-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:63:9-68:75
+68            android:name="com.aldef.power.QuickActionActivity"
+68-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:64:13-48
+69            android:excludeFromRecents="true"
+69-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:65:13-46
+70            android:exported="true"
+70-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:66:13-36
+71            android:taskAffinity=""
+71-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:67:13-36
+72            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+72-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:68:13-72
+73
+74        <!-- Metode 1: Aksesibilitas (tanpa root, tanpa PC) -->
+75        <service
+75-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:71:9-82:19
+76            android:name="com.aldef.power.RebootAccessibilityService"
+76-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:72:13-55
+77            android:exported="true"
+77-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:73:13-36
+78            android:label="@string/app_name"
+78-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:74:13-45
+79            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+79-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:75:13-79
+80            <intent-filter>
+80-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:76:13-78:29
+81                <action android:name="android.accessibilityservice.AccessibilityService" />
+81-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:77:17-92
+81-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:77:25-89
+82            </intent-filter>
+83
+84            <meta-data
+84-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:79:13-81:64
+85                android:name="android.accessibilityservice"
+85-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:80:17-60
+86                android:resource="@xml/accessibility_config" />
+86-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:81:17-61
+87        </service>
+88
+89        <!-- Mode Admin (Device Owner): untuk menyembunyikan aplikasi, diset sekali via ADB -->
+90        <receiver
+90-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:85:9-95:20
+91            android:name="com.aldef.power.AdminReceiver"
+91-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:86:13-42
+92            android:exported="true"
+92-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:87:13-36
+93            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+93-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:88:13-70
+94            <meta-data
+94-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:89:13-91:56
+95                android:name="android.app.device_admin"
+95-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:90:17-56
+96                android:resource="@xml/device_admin" />
+96-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:91:17-53
+97
+98            <intent-filter>
+98-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:92:13-94:29
+99                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+99-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:93:17-82
+99-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:93:25-79
+100            </intent-filter>
+101        </receiver>
+102
+103        <!-- Tombol di panel notifikasi (Quick Settings) -->
+104        <service
+104-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:98:9-107:19
+105            android:name="com.aldef.power.RestartTileService"
+105-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:99:13-47
+106            android:exported="true"
+106-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:100:13-36
+107            android:icon="@drawable/ic_tile_restart"
+107-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:101:13-53
+108            android:label="@string/tile_restart"
+108-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:102:13-49
+109            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+109-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:103:13-77
+110            <intent-filter>
+110-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:104:13-106:29
+111                <action android:name="android.service.quicksettings.action.QS_TILE" />
+111-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:105:17-87
+111-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:105:25-84
+112            </intent-filter>
+113        </service>
+114        <service
+114-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:109:9-118:19
+115            android:name="com.aldef.power.LockTileService"
+115-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:110:13-44
+116            android:exported="true"
+116-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:111:13-36
+117            android:icon="@drawable/ic_tile_lock"
+117-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:112:13-50
+118            android:label="@string/tile_lock"
+118-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:113:13-46
+119            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+119-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:114:13-77
+120            <intent-filter>
+120-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:104:13-106:29
+121                <action android:name="android.service.quicksettings.action.QS_TILE" />
+121-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:105:17-87
+121-->C:\Users\ade zulham\Downloads\Deni\Project\Aldef Reboot\app\src\main\AndroidManifest.xml:105:25-84
+122            </intent-filter>
+123        </service>
+124    </application>
+125
+126</manifest>

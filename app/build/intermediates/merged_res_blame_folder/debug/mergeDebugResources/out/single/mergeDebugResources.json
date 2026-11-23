@@ -1,0 +1,254 @@
+[
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_cell_selected.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_cell_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_card.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_round_btn.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_round_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_btn_pill.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_btn_pill.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\xml_device_admin.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\xml\\device_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-xxhdpi_ic_launcher_fg.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-xxhdpi\\ic_launcher_fg.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_warning.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_warning.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_item_app.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\item_app.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable-nodpi_splash_aldef_power.jpg.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable-nodpi\\splash_aldef_power.jpg"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_chip_selected.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_chip_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_battery.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_battery.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_apps.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_apps.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\xml_shortcuts.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\xml\\shortcuts.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_search.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_chevron.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_chevron.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_eye_off.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_eye_off.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_image.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\xml_accessibility_config.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\xml\\accessibility_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_tabs.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_tabs.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_tile_restart.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_tile_restart.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_search.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_play.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_play.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_power.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_power.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_icon_circle.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_icon_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-xhdpi_ic_launcher_fg.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-xhdpi\\ic_launcher_fg.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_check.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_check.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_sc_restart.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_sc_restart.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_tab_selected.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_tab_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_warning.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_warning.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_btn_secondary.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_btn_secondary.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_sc_power.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_sc_power.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_cell.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_cell.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_back.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_back.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_tile_lock.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_tile_lock.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_activity_vault.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\activity_vault.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_badge.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_badge.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_media_cell.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_media_cell.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_shield.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_shield.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_card_click.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_card_click.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_chip.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_chip.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_item_media.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\item_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-xxxhdpi_ic_launcher_fg.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-xxxhdpi\\ic_launcher_fg.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_btn_primary.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_btn_primary.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_viewer_top.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_viewer_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-mdpi_ic_launcher_fg.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-mdpi\\ic_launcher_fg.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\mipmap-hdpi_ic_launcher_fg.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\mipmap-hdpi\\ic_launcher_fg.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_overlay_sync.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\overlay_sync.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_media_selected.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_media_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_check.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_check.xml"
+    },
+    {
+        "merged": "com.aldef.power.app-debug-4:/layout_activity_vault.xml.flat",
+        "source": "com.aldef.power.app-main-6:/layout/activity_vault.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_cursor.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\cursor.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_row_click.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_row_click.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable-nodpi_aldef_logo.png.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable-nodpi\\aldef_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_eye.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_eye.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\layout_activity_viewer.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\layout\\activity_viewer.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_accessibility.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_accessibility.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_more.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_more.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_ic_sc_lock.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\ic_sc_lock.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_dialog.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-debug-4:\\drawable_bg_screen.xml.flat",
+        "source": "C:\\Users\\ade zulham\\.gradle\\daemon\\9.7.1\\com.aldef.power.app-main-6:\\drawable\\bg_screen.xml"
+    }
+]

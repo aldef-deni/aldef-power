@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ikon shortcut -->
+    <color name="brand">#D32F2F</color>
+    <color name="lock">#455A64</color>
+    <color name="power">#F57C00</color>
+
+    <!-- Tema gelap premium -->
+    <color name="bg">#070815</color>
+    <color name="card_start">#161936</color>
+    <color name="card_end">#0F1127</color>
+    <color name="card_stroke">#262A52</color>
+    <color name="text_primary">#F4F5FF</color>
+    <color name="text_secondary">#9AA0C8</color>
+    <color name="text_muted">#5C6290</color>
+    <color name="accent_cyan">#22D3FF</color>
+    <color name="accent_orange">#FF8A2B</color>
+    <color name="accent_violet">#8B5CFF</color>
+    <color name="accent_light">#B79CFF</color>
+    <color name="ok">#2EE59D</color>
+    <color name="danger">#FF4D6D</color>
+</resources>

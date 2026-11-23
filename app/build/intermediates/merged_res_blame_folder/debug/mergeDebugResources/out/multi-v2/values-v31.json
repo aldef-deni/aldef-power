@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.aldef.power.app-mergeDebugResources-2:/values-v31/values-v31.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\ade zulham\\Downloads\\Deni\\Project\\Aldef Reboot\\app\\src\\main\\res\\values-v31\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "130",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "645"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "570"
+                    }
+                }
+            ]
+        }
+    ]
+}

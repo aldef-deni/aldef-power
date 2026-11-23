@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash 1: layar hitam polos -->
+    <style name="Theme.AldefPower.Splash" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+
+    <!-- Halaman utama: tema gelap premium tanpa action bar -->
+    <style name="Theme.AldefPower.Main" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+        <item name="android:colorAccent">@color/accent_violet</item>
+    </style>
+
+    <!-- Penampil foto/video: layar penuh hitam -->
+    <style name="Theme.AldefPower.Viewer" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:colorAccent">@color/accent_violet</item>
+    </style>
+
+    <!-- Dialog premium: navy, sudut membulat, tombol ungu -->
+    <style name="Theme.AldefPower.Dialog" parent="@android:style/Theme.Material.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:colorBackground">#171A38</item>
+        <item name="android:colorAccent">@color/accent_light</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorAlertDialogListItem">@color/text_primary</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+    </style>
+</resources>
