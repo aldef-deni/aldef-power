@@ -566,7 +566,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
 
     private void askCode(TvPairing p) {
         setState("Masukkan kode yang tampil di TV", R.color.accent_orange);
-        EditText et = input("Kode 6 karakter", InputType.TYPE_CLASS_TEXT
+        EditText et = input("KODE", InputType.TYPE_CLASS_TEXT
                 | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         et.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(6)});
         et.setGravity(Gravity.CENTER);
