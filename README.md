@@ -31,30 +31,28 @@ Di balik tampilannya yang sederhana, ALDEF POWER juga menyimpan **Ruang Privat**
 ### Fitur utama
 
 - **Restart Sekarang** — membuka menu power bawaan sistem; cukup geser ke atas untuk Restart.
-- **Kunci Layar** — mematikan layar dengan aman tanpa tombol power.
-- **Akses cepat** — tile *Restart HP* & *Kunci Layar* di panel notifikasi, serta shortcut ikon aplikasi.
+- **Akses cepat** — tile *Restart HP*, *Kunci Layar* & *Aldef TV* di panel notifikasi, serta shortcut ikon aplikasi.
 - **Sembunyikan aplikasi** — tersinkron **dua arah** dengan fitur *Hide apps* realme; aplikasi tersembunyi tetap bisa dibuka dari Ruang Privat **tanpa unhide**.
 - **Sembunyikan foto & video** — dipindahkan ke brankas tersembunyi sehingga hilang dari Galeri, lengkap dengan penampil foto & pemutar video bawaan.
 - **Cari & filter** — pencarian aplikasi/media serta filter *Semua · Foto · Video*.
 - **Privasi** — Ruang Privat dilindungi dari screenshot dan tidak tampil di layar Recent.
-- **Tampilan premium** — tema gelap bernuansa brand Aldef, splash animasi, dan tombol bergradasi.
+- **Tampilan premium** — tema gelap bernuansa brand Aldef, splash animasi; setiap tombol berwarna berbeda dari palet logo Aldef.
 
-### Fitur Ekstra
+### Fitur di halaman utama
 
-Diatur dari **Status & Pengaturan → Fitur Ekstra**:
+Semua fitur langsung ada di halaman utama, tepat di bawah tombol **Restart Sekarang**:
 
 | Fitur | Cara kerja |
 | --- | --- |
-| **Ketuk Punggung HP** | Akselerometer mendeteksi ketukan di punggung HP: **2×** kunci layar · **3×** buka ALDEF POWER · **4×** buka Aldef System. Sensitivitas Rendah/Sedang/Tinggi + area uji ketukan. |
-| **Bola Power Melayang** | Tombol neon yang mengambang: **ketuk** panel volume (besar/kecilkan suara) · **tahan** menu power (kunci layar, restart, power off) · **geser cepat** screenshot · **seret** untuk memindahkan. |
-| **Selfie Penyusup** | Kamera depan memotret diam-diam saat **PIN layar kunci** atau **kode Ruang Privat** salah, lengkap dengan cap waktu. Foto ada di Ruang Privat → ⋮ → *Log Penyusup*. |
-| **Kirim Penyusup ke Email** | Foto penyusup + tanggal, jam, perangkat & baterai **otomatis dikirim ke email** lewat SMTP Gmail (Sandi Aplikasi Google, disimpan terenkripsi Android Keystore). Saat offline, foto diantrikan dan dikirim begitu internet tersedia. |
-| **Brankas Pengecoh** | Ruang Privat kini dibuka dengan **kode**. Kode asli membuka brankas sungguhan; kode pengecoh membuka brankas palsu bertampilan identik. Diatur dari Ruang Privat → ⋮ → *Brankas Pengecoh*. |
-| **Animasi Cas Neon** | Animasi premium saat charger dicolok (juga di layar kunci), **tampil terus sampai diketuk**: cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
+| **Flying Ball Shortcut** | Tombol neon yang mengambang (transparan 50% saat diam): **ketuk** panel volume · **tahan** menu power (kunci layar, restart, power off) · **geser cepat** screenshot · **seret** untuk memindahkan. |
+| **Animate Charging** | Animasi premium saat charger dicolok (juga di layar kunci), **tampil terus sampai diketuk** & layar tetap menyala: cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
+| **Incorrect Password Capture** | Kamera depan memotret diam-diam saat **PIN layar kunci** salah, lengkap dengan tanggal & jam. Foto ada di Ruang Privat → ⋮ → *Log Penyusup*, dan bisa **otomatis dikirim ke email** lewat SMTP Gmail (Sandi Aplikasi Google, disimpan terenkripsi Android Keystore; antrean saat offline). |
+| **Aldef Remote** | Remote Android TV lewat Wi-Fi (lihat di bawah), plus opsi **Shortcut Aldef TV** untuk menambah / menghilangkan ikon Aldef TV. |
+| **Brankas Pengecoh** | Ruang Privat dibuka dengan **kode**. Kode asli membuka brankas sungguhan; kode pengecoh membuka brankas palsu bertampilan identik. Diatur dari Ruang Privat → ⋮ → *Brankas Pengecoh*. |
 
-### Remote TV
+### Aldef Remote
 
-Dari halaman utama → **Remote TV**: kendalikan **Android TV / realme TV** lewat Wi-Fi dengan protokol **Android TV Remote v2** (protokol yang sama dengan aplikasi Google TV).
+Dari halaman utama → **Aldef Remote**: kendalikan **Android TV / realme TV** lewat Wi-Fi dengan protokol **Android TV Remote v2** (protokol yang sama dengan aplikasi Google TV).
 
 - TV dicari otomatis di Wi-Fi yang sama (mDNS), atau masukkan IP manual.
 - Pairing sekali: kode 6 karakter muncul di layar TV, ketik di HP; berikutnya tersambung otomatis.
@@ -63,7 +61,7 @@ Dari halaman utama → **Remote TV**: kendalikan **Android TV / realme TV** lewa
 - **Keyboard ke TV**: ketik di HP lalu kirim ke kolom teks TV (mis. cari YouTube), *Kirim + Enter* untuk langsung mencari; terbuka otomatis saat TV meminta keyboard.
 - **Tombol volume HP = volume TV** (MediaSession *remote volume*): panel volume HP menampilkan level volume TV dan tetap berfungsi ±10 menit setelah remote ditinggal ke layar lain.
 - Pintasan buka **YouTube**.
-- Buka tanpa masuk ALDEF POWER: **ikon "Remote TV" sendiri** di laci aplikasi, **pintasan** saat ikon ALDEF POWER ditahan, dan **tile "Remote TV"** di panel notifikasi.
+- Buka tanpa masuk ALDEF POWER: **ikon "Aldef TV"** (laci aplikasi / layar utama), **pintasan** saat ikon ALDEF POWER ditahan, dan **tile "Aldef TV"** di panel notifikasi. Ikon & pintasan bisa ditambah / dihilangkan lewat sakelar **Shortcut Aldef TV**.
 
 ### Fitur rahasia
 
@@ -105,17 +103,18 @@ Cakupan kodenya meliputi:
 | File | Peran |
 | --- | --- |
 | `SplashActivity` | Splash hitam → gambar ALDEF POWER + loading 3 detik |
-| `MainActivity` | Halaman utama: Restart, Kunci Layar, status & pengaturan, gestur rahasia |
+| `MainActivity` | Halaman utama: Restart, Flying Ball, Animate Charging, Incorrect Password Capture, Aldef Remote, status & pengaturan, gestur rahasia |
 | `RebootHelper` | Logika restart & kunci layar |
 | `RebootAccessibilityService` | Menu power, kunci layar, auto-tap & mesin sinkron *Hide apps* |
 | `VaultActivity` | Layar Sembunyikan & Ruang Privat (tab, cari, filter, aksi massal) |
 | `AppHider`, `RealmePrivacy`, `RealmeSync` | Daftar aplikasi tersembunyi & jembatan ke *Hide apps* realme |
 | `MediaVault`, `ThumbLoader`, `MediaViewerActivity` | Brankas foto/video, thumbnail, dan penampil media |
 | `RestartTileService`, `LockTileService`, `QuickActionActivity` | Tile panel notifikasi & shortcut |
-| `IntruderMailer`, `SmtpMailer`, `IntruderMailJob`, `SecretBox` | Kirim Selfie Penyusup ke email (SMTP Gmail, antrean offline, sandi terenkripsi) |
+| `IntruderMailer`, `SmtpMailer`, `IntruderMailJob`, `SecretBox` | Kirim foto Incorrect Password Capture ke email (SMTP Gmail, antrean offline, sandi terenkripsi) |
 | `RemoteActivity`, `TvRemote`, `TvPairing`, `TvCert`, `TvDiscovery`, `Proto` | Remote Android TV v2: pairing, TLS + protobuf, sertifikat klien, pencarian mDNS |
 | `DpadView`, `TouchpadView` | D-pad neon & touchpad remote TV |
-| `TvVolume`, `RemoteTileService` | Tombol volume HP → TV (MediaSession + VolumeProvider) & tile Remote TV |
+| `TvVolume`, `RemoteTileService` | Tombol volume HP → TV (MediaSession + VolumeProvider) & tile Aldef TV |
+| `RemoteShortcut` | Opsi tambah / hilangkan ikon & pintasan Aldef TV |
 
 ## Teknologi
 
@@ -156,11 +155,11 @@ Hasil build: `app/build/outputs/apk/debug/app-debug.apk`
 | `MANAGE_EXTERNAL_STORAGE` | Memindahkan foto & video ke brankas tersembunyi |
 | `QUERY_ALL_PACKAGES` | Menampilkan daftar aplikasi yang bisa disembunyikan |
 | `BIND_QUICK_SETTINGS_TILE` | Tile Restart & Kunci Layar |
-| `BIND_DEVICE_ADMIN` | Mode Admin opsional & pantau PIN salah (Selfie Penyusup) |
-| `CAMERA` | Selfie Penyusup |
-| `INTERNET`, `ACCESS_NETWORK_STATE` | Kirim foto penyusup ke email & Remote TV lewat Wi-Fi |
+| `BIND_DEVICE_ADMIN` | Mode Admin opsional & pantau PIN salah (Incorrect Password Capture) |
+| `CAMERA` | Incorrect Password Capture |
+| `INTERNET`, `ACCESS_NETWORK_STATE` | Kirim foto penyusup ke email & Aldef Remote lewat Wi-Fi |
 
-Layanan aksesibilitas hanya membaca isi layar sesaat ketika pengguna memulai sinkron *Hide apps* dari ALDEF POWER. Data hanya keluar dari HP untuk dua hal yang diaktifkan pengguna: email Selfie Penyusup (langsung ke server Gmail) dan perintah remote ke TV di jaringan lokal.
+Layanan aksesibilitas hanya membaca isi layar sesaat ketika pengguna memulai sinkron *Hide apps* dari ALDEF POWER. Data hanya keluar dari HP untuk dua hal yang diaktifkan pengguna: email Incorrect Password Capture (langsung ke server Gmail) dan perintah remote ke TV di jaringan lokal.
 
 ## Kustomisasi
 

@@ -68,28 +68,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AldefPower.Main" />
 
-        <activity
-            android:name=".FeaturesActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AldefPower.Main" />
-
         <!-- Remote TV (Android TV Remote v2 lewat Wi-Fi) -->
         <activity
             android:name=".RemoteActivity"
             android:exported="false"
-            android:label="@string/tile_remote"
+            android:label="@string/aldef_remote"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:taskAffinity="com.aldef.power.remote"
             android:theme="@style/Theme.AldefPower.Main" />
 
-        <!-- Ikon terpisah "Remote TV" di layar utama Android -->
+        <!-- Ikon terpisah "Aldef TV" (bisa dihilangkan dari opsi Shortcut Aldef TV) -->
         <activity-alias
             android:name=".RemoteLauncher"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_remote"
-            android:label="@string/tile_remote"
+            android:label="@string/aldef_tv"
             android:roundIcon="@mipmap/ic_launcher_remote"
             android:targetActivity=".RemoteActivity">
             <intent-filter>
@@ -98,7 +92,7 @@
             </intent-filter>
         </activity-alias>
 
-        <!-- Tile "Remote TV" di panel notifikasi -->
+        <!-- Tile "Aldef TV" di panel notifikasi -->
         <service
             android:name=".RemoteTileService"
             android:exported="true"

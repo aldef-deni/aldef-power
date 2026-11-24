@@ -41,20 +41,22 @@ Salin APK terbaru ke `ALDEF-POWER.apk` di root proyek setelah build.
 - Ruang Privat dibuka lewat `PinActivity` (kode di-hash PBKDF2, `VaultPin`). Dua brankas:
   `SPACE_REAL` (`.aldef_vault`, sinkron realme) dan `SPACE_DECOY` (`.aldef_media`, tanpa realme,
   tampilan identik — jangan tampilkan apa pun yang membocorkan brankas asli di mode pengecoh).
-- Fitur Ekstra (`FeaturesActivity`, prefs `Features`) dijalankan oleh `FeatureHub` di dalam
-  layanan aksesibilitas: `BackTapDetector` (aktif hanya saat layar menyala), `FloatingBall`
-  (TYPE_ACCESSIBILITY_OVERLAY), pemicu `ChargingActivity` (ACTION_POWER_CONNECTED).
-- Selfie Penyusup: `AdminReceiver.onPasswordFailed` (admin perangkat biasa, policy `watch-login`)
+- Fitur ada langsung di `MainActivity` (tidak ada lagi FeaturesActivity / Ketuk Punggung / tombol Kunci Layar):
+  Flying Ball Shortcut (`FloatingBall`, TYPE_ACCESSIBILITY_OVERLAY), Animate Charging (`ChargingActivity`,
+  ACTION_POWER_CONNECTED), Incorrect Password Capture, Aldef Remote. Prefs `Features`, dijalankan `FeatureHub`
+  di dalam layanan aksesibilitas. Setiap tombol punya warna sendiri dari palet logo (`bg_feat_*`).
+- Incorrect Password Capture (dulu Selfie Penyusup): `AdminReceiver.onPasswordFailed` (admin perangkat biasa, policy `watch-login`)
   -> `IntruderCaptureActivity` (transparan, showWhenLocked) -> `IntruderCamera` (Camera2) ->
   `IntruderStore` (filesDir/intruders). Aldef System = `com.aldef.system`.
 - Email penyusup: `IntruderStore.save` -> `IntruderMailer.onPhotoSaved` -> `SmtpMailer` (smtp.gmail.com:465,
   AUTH PLAIN, Sandi Aplikasi Google terenkripsi `SecretBox`/AndroidKeyStore, prefs `intruder_mail`).
   Gagal jaringan -> antrean `pending` + `IntruderMailJob` (JobScheduler). Jangan pernah hardcode sandi.
-- Remote TV (`RemoteActivity`): Android TV Remote v2 — pairing port 6467 (`TvPairing`, kode hex 6, secret =
+- Aldef Remote (`RemoteActivity`): Android TV Remote v2 — pairing port 6467 (`TvPairing`, kode hex 6, secret =
   SHA256(n,e klien + n,e TV + kode[2..])), kontrol port 6466 (`TvRemote`, RemoteMessage: configure=1,
   set_active=2, ping=8/9, key_inject=10, ime_key_inject=20, ime_batch_edit=21 (kirim teks, penghitung dari TV),
   ime_show_request=22 (buka keyboard otomatis), start=40, volume=50, app_link=90; fitur 622). Sertifikat klien
   self-signed dibuat sendiri (`TvCert`, DER manual), discovery mDNS `_androidtvremote2._tcp` (`TvDiscovery`).
   Tombol volume HP -> TV: `TvVolume` (MediaSession + VolumeProvider ABSOLUTE + `setMediaController`);
   WAJIB `session.setCallback(...)` atau onAdjustVolume tidak pernah dipanggil. Koneksi tetap hidup 10 menit
-  di latar. Akses cepat: activity-alias `.RemoteLauncher` (ikon sendiri), shortcut `remote_tv`, `RemoteTileService`.
+  di latar. Akses cepat "Aldef TV": activity-alias `.RemoteLauncher`, shortcut dinamis/pin `aldef_tv`, `RemoteTileService`;
+  sakelar Shortcut Aldef TV = `RemoteShortcut.set()` (enable/disable alias + shortcut).

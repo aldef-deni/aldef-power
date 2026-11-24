@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-/** Tile "Remote TV" di panel notifikasi: langsung membuka remote. */
+/** Tile "Aldef TV" di panel notifikasi: langsung membuka remote. */
 public class RemoteTileService extends TileService {
 
     @Override

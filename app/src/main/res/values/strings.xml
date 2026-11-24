@@ -3,8 +3,9 @@
     <string name="app_name">ALDEF POWER</string>
     <string name="tile_restart">Restart HP</string>
     <string name="tile_lock">Kunci Layar</string>
-    <string name="tile_remote">Remote TV</string>
-    <string name="sc_remote">Remote TV</string>
+    <string name="tile_remote">Aldef TV</string>
+    <string name="aldef_tv">Aldef TV</string>
+    <string name="aldef_remote">Aldef Remote</string>
     <string name="sc_restart">Restart</string>
     <string name="sc_lock">Kunci Layar</string>
     <string name="sc_power">Menu Power</string>

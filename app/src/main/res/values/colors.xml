@@ -17,6 +17,9 @@
     <color name="accent_orange">#FF8A2B</color>
     <color name="accent_violet">#8B5CFF</color>
     <color name="accent_light">#B79CFF</color>
+    <color name="accent_magenta">#E6248F</color>
+    <color name="accent_blue">#3B7BFF</color>
+    <color name="accent_gold">#FFC23D</color>
     <color name="ok">#2EE59D</color>
     <color name="danger">#FF4D6D</color>
 </resources>
