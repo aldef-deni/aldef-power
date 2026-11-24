@@ -35,7 +35,12 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnAppInfo).setOnClickListener(v -> openAppInfo());
 
         // Fitur rahasia: ketuk 5x
-        findViewById(R.id.tvFooter).setOnClickListener(secretTap(() -> openVault(VaultActivity.MODE_MANAGE)));
+        TextView footer = findViewById(R.id.tvFooter);
+        try {
+            footer.setText("ALDEF TECH  ·  v" + getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        } catch (Exception ignored) {
+        }
+        footer.setOnClickListener(secretTap(() -> openVault(VaultActivity.MODE_MANAGE)));
         findViewById(R.id.ivLogo).setOnClickListener(secretTap(() -> PinActivity.openGate(this)));
         findViewById(R.id.btnFeatures).setOnClickListener(v ->
                 startActivity(new Intent(this, FeaturesActivity.class)));
