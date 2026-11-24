@@ -13,6 +13,7 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.GestureDetector;
@@ -28,7 +29,7 @@ import android.view.animation.OvershootInterpolator;
 
 /**
  * Bola Power Melayang (overlay aksesibilitas, tanpa izin "tampil di atas aplikasi lain").
- * Ketuk = kunci layar · Tahan = menu power · Geser cepat = screenshot · Seret pelan = pindahkan.
+ * Ketuk = panel volume · Tahan = menu power · Geser cepat = screenshot · Seret pelan = pindahkan.
  */
 final class FloatingBall {
 
@@ -108,8 +109,7 @@ final class FloatingBall {
                     if (dragging || longPressed) return false;
                     view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     view.pulse();
-                    handler.postDelayed(() ->
-                            svc.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN), 120);
+                    showVolumePanel();
                     return true;
                 }
 
@@ -178,6 +178,18 @@ final class FloatingBall {
                     break;
             }
             return true;
+        }
+    }
+
+    /** Tampilkan panel volume Android (slider bisa digeser untuk besar/kecilkan suara). */
+    private void showVolumePanel() {
+        AudioManager am = (AudioManager) svc.getSystemService(Context.AUDIO_SERVICE);
+        if (am == null) return;
+        try {
+            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_SAME,
+                    AudioManager.FLAG_SHOW_UI);
+        } catch (SecurityException ignored) {
+            // Mode Jangan Ganggu dapat menolak perubahan; panel tetap tidak memaksa
         }
     }
 

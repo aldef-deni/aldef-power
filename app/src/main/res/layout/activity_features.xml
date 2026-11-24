@@ -272,7 +272,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:lineSpacingExtra="2dp"
-                    android:text="Ketuk: kunci layar · Tahan: menu power · Geser cepat: screenshot · Seret: pindahkan"
+                    android:text="Ketuk: atur volume · Tahan: menu power · Geser cepat: screenshot · Seret: pindahkan"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -401,7 +401,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:lineSpacingExtra="2dp"
-                        android:text="Animasi premium ALDEF saat charger dicolok, juga di layar kunci"
+                        android:text="Animasi premium ALDEF saat charger dicolok, tampil terus sampai diketuk"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
                 </LinearLayout>

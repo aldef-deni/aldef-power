@@ -11,14 +11,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.view.WindowManager;
 
 import java.util.Locale;
 
-/** Layar animasi cas neon ALDEF: muncul saat charger dicolok (juga di atas layar kunci). */
+/**
+ * Layar animasi cas neon ALDEF: muncul saat charger dicolok (juga di atas layar kunci)
+ * dan tetap tampil sampai diketuk. Otomatis tertutup jika charger dicabut.
+ */
 public class ChargingActivity extends Activity {
 
-    private static final long SHOW_MS = 7000;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private ChargingView view;
 
@@ -43,9 +44,10 @@ public class ChargingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Tampil terus sampai diketuk. Layar tetap mengikuti waktu tunggu sistem (tidak dipaksa
+        // menyala semalaman); saat layar dinyalakan lagi, animasi masih ada.
         setShowWhenLocked(true);
         setTurnScreenOn(true);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         view = new ChargingView(this);
         view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -59,7 +61,6 @@ public class ChargingActivity extends Activity {
         f.addAction(Intent.ACTION_POWER_DISCONNECTED);
         Intent sticky = registerReceiver(battery, f);
         if (sticky != null) apply(sticky);
-        handler.postDelayed(this::close, SHOW_MS);
     }
 
     private void apply(Intent i) {

@@ -46,10 +46,10 @@ Diatur dari **Status & Pengaturan → Fitur Ekstra**:
 | Fitur | Cara kerja |
 | --- | --- |
 | **Ketuk Punggung HP** | Akselerometer mendeteksi ketukan di punggung HP: **2×** kunci layar · **3×** buka ALDEF POWER · **4×** buka Aldef System. Sensitivitas Rendah/Sedang/Tinggi + area uji ketukan. |
-| **Bola Power Melayang** | Tombol neon yang mengambang: **ketuk** kunci layar · **tahan** menu power · **geser cepat** screenshot · **seret** untuk memindahkan. |
+| **Bola Power Melayang** | Tombol neon yang mengambang: **ketuk** panel volume (besar/kecilkan suara) · **tahan** menu power (kunci layar, restart, power off) · **geser cepat** screenshot · **seret** untuk memindahkan. |
 | **Selfie Penyusup** | Kamera depan memotret diam-diam saat **PIN layar kunci** atau **kode Ruang Privat** salah, lengkap dengan cap waktu. Foto ada di Ruang Privat → ⋮ → *Log Penyusup*. |
 | **Brankas Pengecoh** | Ruang Privat kini dibuka dengan **kode**. Kode asli membuka brankas sungguhan; kode pengecoh membuka brankas palsu bertampilan identik. Diatur dari Ruang Privat → ⋮ → *Brankas Pengecoh*. |
-| **Animasi Cas Neon** | Animasi premium saat charger dicolok (juga di layar kunci): cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
+| **Animasi Cas Neon** | Animasi premium saat charger dicolok (juga di layar kunci), **tampil terus sampai diketuk**: cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
 
 ### Fitur rahasia
 
