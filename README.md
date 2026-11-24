@@ -48,8 +48,19 @@ Diatur dari **Status & Pengaturan → Fitur Ekstra**:
 | **Ketuk Punggung HP** | Akselerometer mendeteksi ketukan di punggung HP: **2×** kunci layar · **3×** buka ALDEF POWER · **4×** buka Aldef System. Sensitivitas Rendah/Sedang/Tinggi + area uji ketukan. |
 | **Bola Power Melayang** | Tombol neon yang mengambang: **ketuk** panel volume (besar/kecilkan suara) · **tahan** menu power (kunci layar, restart, power off) · **geser cepat** screenshot · **seret** untuk memindahkan. |
 | **Selfie Penyusup** | Kamera depan memotret diam-diam saat **PIN layar kunci** atau **kode Ruang Privat** salah, lengkap dengan cap waktu. Foto ada di Ruang Privat → ⋮ → *Log Penyusup*. |
+| **Kirim Penyusup ke Email** | Foto penyusup + tanggal, jam, perangkat & baterai **otomatis dikirim ke email** lewat SMTP Gmail (Sandi Aplikasi Google, disimpan terenkripsi Android Keystore). Saat offline, foto diantrikan dan dikirim begitu internet tersedia. |
 | **Brankas Pengecoh** | Ruang Privat kini dibuka dengan **kode**. Kode asli membuka brankas sungguhan; kode pengecoh membuka brankas palsu bertampilan identik. Diatur dari Ruang Privat → ⋮ → *Brankas Pengecoh*. |
 | **Animasi Cas Neon** | Animasi premium saat charger dicolok (juga di layar kunci), **tampil terus sampai diketuk**: cincin energi berputar, partikel, persentase, suhu, tegangan, perkiraan waktu penuh. |
+
+### Remote TV
+
+Dari halaman utama → **Remote TV**: kendalikan **Android TV / realme TV** lewat Wi-Fi dengan protokol **Android TV Remote v2** (protokol yang sama dengan aplikasi Google TV).
+
+- TV dicari otomatis di Wi-Fi yang sama (mDNS), atau masukkan IP manual.
+- Pairing sekali: kode 6 karakter muncul di layar TV, ketik di HP; berikutnya tersambung otomatis.
+- **D-pad neon** atau **Touchpad** (geser = arah, ketuk = OK, tahan = tekan lama).
+- Power, Input, Pengaturan, Kembali, Home, Menu, Volume ± / Bisu, Channel ±, Putar/Jeda, Mundur/Maju.
+- **Tombol volume HP** ikut mengatur volume TV; pintasan buka YouTube, Netflix, Prime Video.
 
 ### Fitur rahasia
 
@@ -98,6 +109,9 @@ Cakupan kodenya meliputi:
 | `AppHider`, `RealmePrivacy`, `RealmeSync` | Daftar aplikasi tersembunyi & jembatan ke *Hide apps* realme |
 | `MediaVault`, `ThumbLoader`, `MediaViewerActivity` | Brankas foto/video, thumbnail, dan penampil media |
 | `RestartTileService`, `LockTileService`, `QuickActionActivity` | Tile panel notifikasi & shortcut |
+| `IntruderMailer`, `SmtpMailer`, `IntruderMailJob`, `SecretBox` | Kirim Selfie Penyusup ke email (SMTP Gmail, antrean offline, sandi terenkripsi) |
+| `RemoteActivity`, `TvRemote`, `TvPairing`, `TvCert`, `TvDiscovery`, `Proto` | Remote Android TV v2: pairing, TLS + protobuf, sertifikat klien, pencarian mDNS |
+| `DpadView`, `TouchpadView` | D-pad neon & touchpad remote TV |
 
 ## Teknologi
 
@@ -138,9 +152,11 @@ Hasil build: `app/build/outputs/apk/debug/app-debug.apk`
 | `MANAGE_EXTERNAL_STORAGE` | Memindahkan foto & video ke brankas tersembunyi |
 | `QUERY_ALL_PACKAGES` | Menampilkan daftar aplikasi yang bisa disembunyikan |
 | `BIND_QUICK_SETTINGS_TILE` | Tile Restart & Kunci Layar |
-| `BIND_DEVICE_ADMIN` | Mode Admin opsional (restart/hide tanpa realme) |
+| `BIND_DEVICE_ADMIN` | Mode Admin opsional & pantau PIN salah (Selfie Penyusup) |
+| `CAMERA` | Selfie Penyusup |
+| `INTERNET`, `ACCESS_NETWORK_STATE` | Kirim foto penyusup ke email & Remote TV lewat Wi-Fi |
 
-Layanan aksesibilitas hanya membaca isi layar sesaat ketika pengguna memulai sinkron *Hide apps* dari ALDEF POWER. Tidak ada data yang dikirim ke internet.
+Layanan aksesibilitas hanya membaca isi layar sesaat ketika pengguna memulai sinkron *Hide apps* dari ALDEF POWER. Data hanya keluar dari HP untuk dua hal yang diaktifkan pengguna: email Selfie Penyusup (langsung ke server Gmail) dan perintah remote ke TV di jaringan lokal.
 
 ## Kustomisasi
 

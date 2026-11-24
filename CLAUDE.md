@@ -47,3 +47,10 @@ Salin APK terbaru ke `ALDEF-POWER.apk` di root proyek setelah build.
 - Selfie Penyusup: `AdminReceiver.onPasswordFailed` (admin perangkat biasa, policy `watch-login`)
   -> `IntruderCaptureActivity` (transparan, showWhenLocked) -> `IntruderCamera` (Camera2) ->
   `IntruderStore` (filesDir/intruders). Aldef System = `com.aldef.system`.
+- Email penyusup: `IntruderStore.save` -> `IntruderMailer.onPhotoSaved` -> `SmtpMailer` (smtp.gmail.com:465,
+  AUTH PLAIN, Sandi Aplikasi Google terenkripsi `SecretBox`/AndroidKeyStore, prefs `intruder_mail`).
+  Gagal jaringan -> antrean `pending` + `IntruderMailJob` (JobScheduler). Jangan pernah hardcode sandi.
+- Remote TV (`RemoteActivity`): Android TV Remote v2 — pairing port 6467 (`TvPairing`, kode hex 6, secret =
+  SHA256(n,e klien + n,e TV + kode[2..])), kontrol port 6466 (`TvRemote`, RemoteMessage: configure=1,
+  set_active=2, ping=8/9, key_inject=10, start=40, volume=50, app_link=90; fitur 622). Sertifikat klien
+  self-signed dibuat sendiri (`TvCert`, DER manual), discovery mDNS `_androidtvremote2._tcp` (`TvDiscovery`).

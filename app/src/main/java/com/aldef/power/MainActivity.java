@@ -39,6 +39,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.ivLogo).setOnClickListener(secretTap(() -> PinActivity.openGate(this)));
         findViewById(R.id.btnFeatures).setOnClickListener(v ->
                 startActivity(new Intent(this, FeaturesActivity.class)));
+        findViewById(R.id.btnRemote).setOnClickListener(v ->
+                startActivity(new Intent(this, RemoteActivity.class)));
     }
 
     @Override

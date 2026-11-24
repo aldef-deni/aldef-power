@@ -17,6 +17,9 @@
     <uses-feature
         android:name="android.hardware.camera.front"
         android:required="false" />
+    <!-- Email Selfie Penyusup & Remote TV lewat Wi-Fi -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Daftar aplikasi untuk disembunyikan -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
@@ -70,6 +73,19 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AldefPower.Main" />
+
+        <!-- Remote TV (Android TV Remote v2 lewat Wi-Fi) -->
+        <activity
+            android:name=".RemoteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AldefPower.Main" />
+
+        <!-- Ulang kirim email Selfie Penyusup saat internet tersedia -->
+        <service
+            android:name=".IntruderMailJob"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <activity
             android:name=".IntruderLogActivity"

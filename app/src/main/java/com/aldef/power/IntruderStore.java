@@ -105,6 +105,7 @@ final class IntruderStore {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 90, fos);
             }
             bmp.recycle();
+            IntruderMailer.onPhotoSaved(c, out);   // kirim ke email bila diaktifkan
             return out;
         } catch (Exception | OutOfMemoryError e) {
             return null;

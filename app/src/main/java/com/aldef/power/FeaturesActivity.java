@@ -2,7 +2,10 @@ package com.aldef.power;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
+import android.net.Uri;
+import android.widget.EditText;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,9 +21,9 @@ public class FeaturesActivity extends Activity {
     private static final int REQ_CAMERA = 51;
     private static final int REQ_ADMIN = 52;
 
-    private Switch swTap, swBall, swIntruder, swCharging;
-    private View tapOptions, accWarning;
-    private TextView chipLow, chipMed, chipHigh, tvTapTest, tvIntruderStatus;
+    private Switch swTap, swBall, swIntruder, swCharging, swMail;
+    private View tapOptions, accWarning, mailOptions;
+    private TextView chipLow, chipMed, chipHigh, tvTapTest, tvIntruderStatus, tvMailStatus;
     private BackTapDetector tester;
     private boolean binding;
     private boolean resumed;
@@ -42,6 +45,20 @@ public class FeaturesActivity extends Activity {
         chipHigh = findViewById(R.id.chipHigh);
         tvTapTest = findViewById(R.id.tvTapTest);
         tvIntruderStatus = findViewById(R.id.tvIntruderStatus);
+        swMail = findViewById(R.id.swMail);
+        mailOptions = findViewById(R.id.mailOptions);
+        tvMailStatus = findViewById(R.id.tvMailStatus);
+        findViewById(R.id.btnMail).setOnClickListener(v -> openMailSetup());
+        swMail.setOnCheckedChangeListener((b, on) -> {
+            if (binding) return;
+            if (on && !IntruderMailer.configured(this)) {
+                openMailSetup();
+            } else {
+                IntruderMailer.setEnabled(this, on);
+                if (on) IntruderMailer.flush(this);
+            }
+            refresh();
+        });
 
         accWarning.setOnClickListener(v -> RebootHelper.openAccessibilitySettings(this));
         swTap.setOnCheckedChangeListener((b, on) -> {
@@ -88,7 +105,23 @@ public class FeaturesActivity extends Activity {
         boolean intruderOn = Features.intruder(this) && intruderReady();
         if (Features.intruder(this) && !intruderOn) Features.set(this, Features.KEY_INTRUDER, false);
         swIntruder.setChecked(intruderOn);
+        swMail.setChecked(IntruderMailer.enabled(this));
         binding = false;
+
+        mailOptions.setVisibility(intruderOn ? View.VISIBLE : View.GONE);
+        String ms;
+        if (!IntruderMailer.configured(this)) {
+            ms = "Ketuk untuk atur akun Gmail pengirim";
+        } else if (!IntruderMailer.enabled(this)) {
+            ms = "Nonaktif · ke " + IntruderMailer.to(this);
+        } else {
+            String st = IntruderMailer.status(this);
+            int pend = IntruderMailer.pendingCount(this);
+            ms = "Ke " + IntruderMailer.to(this)
+                    + (pend > 0 ? "\n" + pend + " foto menunggu dikirim" : "")
+                    + (st != null ? "\n" + st : "");
+        }
+        tvMailStatus.setText(ms);
 
         accWarning.setVisibility(RebootHelper.isAccessibilityOn() ? View.GONE : View.VISIBLE);
         tapOptions.setVisibility(Features.backTap(this) ? View.VISIBLE : View.GONE);
@@ -199,6 +232,96 @@ public class FeaturesActivity extends Activity {
             if (RebootHelper.dpm(this).isAdminActive(RebootHelper.admin(this))) enableIntruder();
             else refresh();
         }
+    }
+
+    // ------------------------------------------------------------ email penyusup
+
+    private void openMailSetup() {
+        View form = getLayoutInflater().inflate(R.layout.dialog_mail, null);
+        EditText etTo = form.findViewById(R.id.etTo);
+        EditText etUser = form.findViewById(R.id.etUser);
+        EditText etPass = form.findViewById(R.id.etPass);
+        etTo.setText(IntruderMailer.to(this));
+        String user = IntruderMailer.user(this);
+        etUser.setText(user.isEmpty() ? IntruderMailer.DEFAULT_TO : user);
+        final boolean hasPass = IntruderMailer.hasPassword(this);
+        if (hasPass) etPass.setHint("•••• tersimpan (kosongkan = tetap)");
+        form.findViewById(R.id.btnAppPassword).setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://myaccount.google.com/apppasswords")));
+            } catch (Exception e) {
+                Toast.makeText(this, "Buka myaccount.google.com/apppasswords di browser", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        AlertDialog d = new AlertDialog.Builder(this, R.style.Theme_AldefPower_Dialog)
+                .setTitle("Kirim Selfie Penyusup ke Email")
+                .setView(form)
+                .setPositiveButton("Simpan", null)
+                .setNeutralButton("Kirim Uji", null)
+                .setNegativeButton("Batal", null)
+                .create();
+        d.setOnDismissListener(x -> refresh());
+        d.setOnShowListener(x -> {
+            d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                String[] f = readMailForm(etTo, etUser, etPass, hasPass);
+                if (f == null) return;
+                if (!IntruderMailer.save(this, f[1], f[3], f[0])) {
+                    Toast.makeText(this, "Gagal menyimpan sandi secara aman", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                IntruderMailer.setEnabled(this, true);
+                IntruderMailer.flush(this);
+                Toast.makeText(this, "Email penyusup aktif", Toast.LENGTH_SHORT).show();
+                d.dismiss();
+            });
+            d.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v -> {
+                String[] f = readMailForm(etTo, etUser, etPass, hasPass);
+                if (f == null) return;
+                v.setEnabled(false);
+                Toast.makeText(this, "Mengirim email uji…", Toast.LENGTH_SHORT).show();
+                IntruderMailer.sendTest(this, f[1], f[2], f[0], err -> {
+                    v.setEnabled(true);
+                    if (err == null) {
+                        Toast.makeText(this, "Email uji terkirim ke " + f[0], Toast.LENGTH_LONG).show();
+                    } else {
+                        new AlertDialog.Builder(this, R.style.Theme_AldefPower_Dialog)
+                                .setTitle("Email uji gagal")
+                                .setMessage(err)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    }
+                });
+            });
+        });
+        d.show();
+    }
+
+    /** @return {tujuan, pengirim, sandi untuk dipakai, sandi baru (null = tetap)} atau null jika tidak valid. */
+    private String[] readMailForm(EditText etTo, EditText etUser, EditText etPass, boolean hasPass) {
+        String to = etTo.getText().toString().trim();
+        String user = etUser.getText().toString().trim();
+        String pass = etPass.getText().toString().replace(" ", "").trim();
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(to).matches()) {
+            etTo.setError("Email tujuan tidak valid");
+            return null;
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
+            etUser.setError("Alamat Gmail tidak valid");
+            return null;
+        }
+        String newPass = pass.isEmpty() ? null : pass;
+        String use = newPass != null ? newPass : (hasPass ? IntruderMailer.password(this) : null);
+        if (use == null) {
+            etPass.setError("Isi Sandi Aplikasi Gmail");
+            return null;
+        }
+        if (newPass != null && newPass.length() != 16) {
+            etPass.setError("Sandi Aplikasi Gmail terdiri dari 16 huruf");
+            return null;
+        }
+        return new String[]{to, user, use, newPass};
     }
 
     private void styleChip(TextView tv, boolean active) {
