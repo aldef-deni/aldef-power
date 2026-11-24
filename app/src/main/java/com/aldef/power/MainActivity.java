@@ -135,9 +135,9 @@ public class MainActivity extends Activity {
         swRemoteShortcut.setChecked(shortcutOn);
         binding = false;
 
-        tvIntruderStatus.setText(intruderOn
-                ? "Aktif · " + IntruderStore.count(this) + " foto di Ruang Privat › Log Penyusup"
-                : "Butuh izin kamera & admin perangkat");
+        // Saat aktif tidak ada teks status; saat nonaktif tampilkan apa yang dibutuhkan.
+        tvIntruderStatus.setText("Butuh izin kamera & admin perangkat");
+        tvIntruderStatus.setVisibility(intruderOn ? View.GONE : View.VISIBLE);
         mailOptions.setVisibility(intruderOn ? View.VISIBLE : View.GONE);
         String ms;
         if (!IntruderMailer.configured(this)) {
