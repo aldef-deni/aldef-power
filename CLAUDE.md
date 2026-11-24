@@ -55,3 +55,6 @@ Salin APK terbaru ke `ALDEF-POWER.apk` di root proyek setelah build.
   set_active=2, ping=8/9, key_inject=10, ime_key_inject=20, ime_batch_edit=21 (kirim teks, penghitung dari TV),
   ime_show_request=22 (buka keyboard otomatis), start=40, volume=50, app_link=90; fitur 622). Sertifikat klien
   self-signed dibuat sendiri (`TvCert`, DER manual), discovery mDNS `_androidtvremote2._tcp` (`TvDiscovery`).
+  Tombol volume HP -> TV: `TvVolume` (MediaSession + VolumeProvider ABSOLUTE + `setMediaController`);
+  WAJIB `session.setCallback(...)` atau onAdjustVolume tidak pernah dipanggil. Koneksi tetap hidup 10 menit
+  di latar. Akses cepat: activity-alias `.RemoteLauncher` (ikon sendiri), shortcut `remote_tv`, `RemoteTileService`.

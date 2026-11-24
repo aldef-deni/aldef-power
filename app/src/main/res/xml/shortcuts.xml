@@ -21,4 +21,14 @@
             android:targetClass="com.aldef.power.QuickActionActivity"
             android:targetPackage="com.aldef.power" />
     </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_sc_remote"
+        android:shortcutId="remote_tv"
+        android:shortcutShortLabel="@string/sc_remote">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.aldef.power.RemoteActivity"
+            android:targetPackage="com.aldef.power" />
+    </shortcut>
 </shortcuts>

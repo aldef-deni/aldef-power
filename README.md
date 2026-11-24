@@ -61,7 +61,9 @@ Dari halaman utama → **Remote TV**: kendalikan **Android TV / realme TV** lewa
 - **D-pad neon** atau **Touchpad** (geser = arah, ketuk = OK, tahan = tekan lama).
 - Power, Input, Pengaturan, Kembali, Home, Menu, Volume ± / Bisu, Channel ±, Putar/Jeda, Mundur/Maju.
 - **Keyboard ke TV**: ketik di HP lalu kirim ke kolom teks TV (mis. cari YouTube), *Kirim + Enter* untuk langsung mencari; terbuka otomatis saat TV meminta keyboard.
-- **Tombol volume HP** ikut mengatur volume TV; pintasan buka **YouTube**.
+- **Tombol volume HP = volume TV** (MediaSession *remote volume*): panel volume HP menampilkan level volume TV dan tetap berfungsi ±10 menit setelah remote ditinggal ke layar lain.
+- Pintasan buka **YouTube**.
+- Buka tanpa masuk ALDEF POWER: **ikon "Remote TV" sendiri** di laci aplikasi, **pintasan** saat ikon ALDEF POWER ditahan, dan **tile "Remote TV"** di panel notifikasi.
 
 ### Fitur rahasia
 
@@ -113,6 +115,7 @@ Cakupan kodenya meliputi:
 | `IntruderMailer`, `SmtpMailer`, `IntruderMailJob`, `SecretBox` | Kirim Selfie Penyusup ke email (SMTP Gmail, antrean offline, sandi terenkripsi) |
 | `RemoteActivity`, `TvRemote`, `TvPairing`, `TvCert`, `TvDiscovery`, `Proto` | Remote Android TV v2: pairing, TLS + protobuf, sertifikat klien, pencarian mDNS |
 | `DpadView`, `TouchpadView` | D-pad neon & touchpad remote TV |
+| `TvVolume`, `RemoteTileService` | Tombol volume HP → TV (MediaSession + VolumeProvider) & tile Remote TV |
 
 ## Teknologi
 

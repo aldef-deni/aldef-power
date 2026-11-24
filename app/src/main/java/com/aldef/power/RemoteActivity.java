@@ -40,6 +40,16 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
     private final Map<String, String> found = new LinkedHashMap<>();
 
     private TvRemote remote;
+    private TvVolume tvVol;
+
+    /** Di latar belakang koneksi tetap hidup sebentar agar tombol volume HP tetap mengatur TV. */
+    private static final long BACKGROUND_KEEP_MS = 10 * 60 * 1000L;
+    private final Runnable backgroundStop = () -> {
+        if (!this.visible) {
+            tvVol.detach(this);
+            remote.disconnect();
+        }
+    };
     private TvDiscovery discovery;
     private TvPairing pairing;
     private AlertDialog kbDialog;
@@ -116,6 +126,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
         });
 
         remote = new TvRemote(this, this);
+        tvVol = new TvVolume(this, remote);
         discovery = new TvDiscovery(this, this::onFound);
 
         SharedPreferences p = prefs();
@@ -131,6 +142,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
     protected void onStart() {
         super.onStart();
         visible = true;
+        h.removeCallbacks(backgroundStop);
         if (host != null && pairing == null && !remote.isConnected()) remote.connect(host);
         if (pickerOpen) startScan();
     }
@@ -140,14 +152,21 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
         visible = false;
         h.removeCallbacks(retry);
         h.removeCallbacks(scanHint);
-        remote.disconnect();
         discovery.stop();
+        if (isFinishing() || !remote.isConnected()) {
+            tvVol.detach(this);
+            remote.disconnect();
+        } else {
+            h.postDelayed(backgroundStop, BACKGROUND_KEEP_MS);
+        }
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
         if (kbDialog != null) kbDialog.dismiss();
+        h.removeCallbacksAndMessages(null);
+        tvVol.detach(this);
         remote.release();
         closePairing();
         super.onDestroy();
@@ -163,8 +182,9 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Normalnya ditangani MediaSession (TvVolume) -> panel volume HP menampilkan volume TV.
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
-                && remote.isConnected()) {
+                && remote.isConnected() && !tvVol.active()) {
             remote.sendKey(keyCode, TvRemote.DIR_SHORT);
             return true;
         }
@@ -174,7 +194,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
-                && remote.isConnected()) {
+                && remote.isConnected() && !tvVol.active()) {
             return true;
         }
         return super.onKeyUp(keyCode, event);
@@ -185,12 +205,14 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
     @Override
     public void onState(int state, String detail) {
         h.removeCallbacks(retry);
+        if (state != TvRemote.STATE_CONNECTED) tvVol.detach(this);
         switch (state) {
             case TvRemote.STATE_CONNECTING:
                 setState("Menghubungkan…", R.color.accent_light);
                 break;
             case TvRemote.STATE_CONNECTED:
                 setState("Terhubung", R.color.ok);
+                tvVol.attach(this);
                 if (pickerOpen) showPicker(false);
                 break;
             case TvRemote.STATE_NEED_PAIRING:
@@ -210,6 +232,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
 
     @Override
     public void onVolume(int level, int max, boolean muted) {
+        tvVol.update(level, max);
         tvVolume.setText(muted ? "Volume TV · Bisu" : "Volume TV · " + level + (max > 0 ? " / " + max : ""));
         ((ImageView) findViewById(R.id.btnMute)).setImageTintList(ColorStateList.valueOf(
                 getColor(muted ? R.color.danger : R.color.text_secondary)));

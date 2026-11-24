@@ -78,8 +78,37 @@
         <activity
             android:name=".RemoteActivity"
             android:exported="false"
+            android:label="@string/tile_remote"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
+            android:taskAffinity="com.aldef.power.remote"
             android:theme="@style/Theme.AldefPower.Main" />
+
+        <!-- Ikon terpisah "Remote TV" di layar utama Android -->
+        <activity-alias
+            android:name=".RemoteLauncher"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_remote"
+            android:label="@string/tile_remote"
+            android:roundIcon="@mipmap/ic_launcher_remote"
+            android:targetActivity=".RemoteActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- Tile "Remote TV" di panel notifikasi -->
+        <service
+            android:name=".RemoteTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_tile_remote"
+            android:label="@string/tile_remote"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
         <!-- Ulang kirim email Selfie Penyusup saat internet tersedia -->
         <service
