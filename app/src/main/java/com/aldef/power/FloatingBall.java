@@ -247,7 +247,12 @@ final class FloatingBall {
     // ------------------------------------------------------------ tampilan bola
 
     static final class BallView extends View {
-        static final float IDLE_ALPHA = 0.88f;
+        /** Transparansi saat diam (50%); saat disentuh solid, lalu kembali setelah 3 detik. */
+        static final float IDLE_ALPHA = 0.5f;
+        private static final long SOLID_HOLD_MS = 3000;
+
+        private final Runnable fadeBack = () ->
+                animate().alpha(IDLE_ALPHA).setDuration(450).start();
 
         private final Paint ring = new Paint(Paint.ANTI_ALIAS_FLAG);
         private final Paint glow = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -268,8 +273,15 @@ final class FloatingBall {
         }
 
         void setPressedLook(boolean pressed) {
-            animate().scaleX(pressed ? 0.9f : 1f).scaleY(pressed ? 0.9f : 1f)
-                    .alpha(pressed ? 1f : IDLE_ALPHA).setDuration(120).start();
+            removeCallbacks(fadeBack);
+            if (pressed) {
+                // langsung solid begitu disentuh
+                animate().scaleX(0.9f).scaleY(0.9f).alpha(1f).setDuration(120).start();
+            } else {
+                // tetap solid 3 detik setelah dilepas, lalu transparan lagi
+                animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(120).start();
+                postDelayed(fadeBack, SOLID_HOLD_MS);
+            }
         }
 
         void pulse() {
