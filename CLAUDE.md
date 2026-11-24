@@ -52,5 +52,6 @@ Salin APK terbaru ke `ALDEF-POWER.apk` di root proyek setelah build.
   Gagal jaringan -> antrean `pending` + `IntruderMailJob` (JobScheduler). Jangan pernah hardcode sandi.
 - Remote TV (`RemoteActivity`): Android TV Remote v2 — pairing port 6467 (`TvPairing`, kode hex 6, secret =
   SHA256(n,e klien + n,e TV + kode[2..])), kontrol port 6466 (`TvRemote`, RemoteMessage: configure=1,
-  set_active=2, ping=8/9, key_inject=10, start=40, volume=50, app_link=90; fitur 622). Sertifikat klien
+  set_active=2, ping=8/9, key_inject=10, ime_key_inject=20, ime_batch_edit=21 (kirim teks, penghitung dari TV),
+  ime_show_request=22 (buka keyboard otomatis), start=40, volume=50, app_link=90; fitur 622). Sertifikat klien
   self-signed dibuat sendiri (`TvCert`, DER manual), discovery mDNS `_androidtvremote2._tcp` (`TvDiscovery`).

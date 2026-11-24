@@ -47,6 +47,9 @@ final class TvRemote {
         void onVolume(int level, int max, boolean muted);
 
         void onPower(boolean on);
+
+        /** TV meminta keyboard (kolom teks di TV dipilih); text = isi kolom saat ini. */
+        void onImeRequest(String text);
     }
 
     private final Context ctx;
@@ -58,6 +61,8 @@ final class TvRemote {
     private volatile OutputStream out;
     private volatile boolean connected, closed;
     private volatile int gen;
+    private volatile int imeCounter, fieldCounter;
+    private volatile String imeText = "";
     private Thread reader;
 
     TvRemote(Context c, Listener l) {
@@ -104,6 +109,20 @@ final class TvRemote {
 
     void launchApp(String link) {
         send(new Proto.W().msg(90, new Proto.W().str(1, link)));
+    }
+
+    /** Isi kolom teks yang sedang aktif di TV (remote_ime_batch_edit). */
+    void sendText(String text) {
+        int cursor = Math.max(0, text.length() - 1);
+        Proto.W field = new Proto.W().num(1, cursor).num(2, cursor).str(3, text);
+        Proto.W edit = new Proto.W().num(1, 1).msg(2, field);
+        send(new Proto.W().msg(21, new Proto.W().num(1, imeCounter).num(2, fieldCounter).msg(3, edit)));
+        imeText = text;
+    }
+
+    /** Isi kolom teks TV terakhir yang diketahui. */
+    String imeText() {
+        return imeText;
     }
 
     // ------------------------------------------------------------ inti
@@ -172,6 +191,24 @@ final class TvRemote {
                 connected = true;
                 post(STATE_CONNECTED, null, g);
             }
+        } else if (m.has(20)) {    // remote_ime_key_inject: info kolom teks aktif
+            Proto.M inj = m.msg(20);
+            Proto.M st = inj == null ? null : inj.msg(2);
+            if (st != null && st.str(2) != null) imeText = st.str(2);
+        } else if (m.has(21)) {    // remote_ime_batch_edit dari TV: simpan penghitung
+            Proto.M be = m.msg(21);
+            if (be != null) {
+                imeCounter = (int) be.num(1, imeCounter);
+                fieldCounter = (int) be.num(2, fieldCounter);
+            }
+        } else if (m.has(22)) {    // remote_ime_show_request: TV membuka keyboard
+            Proto.M show = m.msg(22);
+            Proto.M st = show == null ? null : show.msg(2);
+            if (st != null && st.str(2) != null) imeText = st.str(2);
+            String t = imeText;
+            main.post(() -> {
+                if (!stale(g)) listener.onImeRequest(t);
+            });
         } else if (m.has(50)) {    // remote_set_volume_level
             Proto.M v = m.msg(50);
             if (v != null) {

@@ -478,53 +478,50 @@
                 android:layout_marginTop="22dp"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="0.15"
-                android:text="BUKA APLIKASI DI TV"
+                android:text="PINTASAN"
                 android:textColor="@color/text_muted"
                 android:textSize="11sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnKeyboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip"
+                    android:drawableStart="@drawable/ic_keyboard"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/accent_cyan"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
+                    android:text="Keyboard"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/appYoutube"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_chip"
+                    android:drawableStart="@drawable/ic_youtube"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="#FF3B3B"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
                     android:text="YouTube"
                     android:textColor="@color/text_primary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/appNetflix"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_chip"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:text="Netflix"
-                    android:textColor="@color/text_primary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/appPrime"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_chip"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:text="Prime Video"
-                    android:textColor="@color/text_primary"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

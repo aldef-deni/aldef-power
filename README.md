@@ -60,7 +60,8 @@ Dari halaman utama → **Remote TV**: kendalikan **Android TV / realme TV** lewa
 - Pairing sekali: kode 6 karakter muncul di layar TV, ketik di HP; berikutnya tersambung otomatis.
 - **D-pad neon** atau **Touchpad** (geser = arah, ketuk = OK, tahan = tekan lama).
 - Power, Input, Pengaturan, Kembali, Home, Menu, Volume ± / Bisu, Channel ±, Putar/Jeda, Mundur/Maju.
-- **Tombol volume HP** ikut mengatur volume TV; pintasan buka YouTube, Netflix, Prime Video.
+- **Keyboard ke TV**: ketik di HP lalu kirim ke kolom teks TV (mis. cari YouTube), *Kirim + Enter* untuk langsung mencari; terbuka otomatis saat TV meminta keyboard.
+- **Tombol volume HP** ikut mengatur volume TV; pintasan buka **YouTube**.
 
 ### Fitur rahasia
 

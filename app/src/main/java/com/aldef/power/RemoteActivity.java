@@ -42,6 +42,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
     private TvRemote remote;
     private TvDiscovery discovery;
     private TvPairing pairing;
+    private AlertDialog kbDialog;
     private String host, name;
     private boolean visible, pickerOpen;
     private long lastToast;
@@ -105,8 +106,14 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
         hold(R.id.btnChUp, KeyEvent.KEYCODE_CHANNEL_UP);
         hold(R.id.btnChDown, KeyEvent.KEYCODE_CHANNEL_DOWN);
         app(R.id.appYoutube, "https://www.youtube.com");
-        app(R.id.appNetflix, "https://www.netflix.com/title");
-        app(R.id.appPrime, "https://app.primevideo.com");
+        findViewById(R.id.btnKeyboard).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (!remote.isConnected()) {
+                key(0, 0);
+                return;
+            }
+            openKeyboard(remote.imeText());
+        });
 
         remote = new TvRemote(this, this);
         discovery = new TvDiscovery(this, this::onFound);
@@ -140,6 +147,7 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
 
     @Override
     protected void onDestroy() {
+        if (kbDialog != null) kbDialog.dismiss();
         remote.release();
         closePairing();
         super.onDestroy();
@@ -212,6 +220,98 @@ public class RemoteActivity extends Activity implements TvRemote.Listener {
         if (remote.isConnected()) {
             setState(on ? "Terhubung · TV menyala" : "Terhubung · TV standby", on ? R.color.ok : R.color.accent_orange);
         }
+    }
+
+    @Override
+    public void onImeRequest(String text) {
+        // kolom teks di TV dipilih -> buka keyboard otomatis seperti aplikasi Google TV
+        if (visible && (kbDialog == null || !kbDialog.isShowing())) openKeyboard(text);
+    }
+
+    // ------------------------------------------------------------ keyboard ke TV
+
+    private void openKeyboard(String current) {
+        if (kbDialog != null && kbDialog.isShowing()) return;
+        EditText et = input("Ketik teks untuk TV…", InputType.TYPE_CLASS_TEXT
+                | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        et.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
+        if (current != null && !current.isEmpty()) {
+            et.setText(current);
+            et.setSelection(current.length());
+        }
+
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams full = new LinearLayout.LayoutParams(-1, -2);
+        box.addView(et, full);
+
+        LinearLayout tools = new LinearLayout(this);
+        tools.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams tl = new LinearLayout.LayoutParams(-1, dp(40));
+        tl.topMargin = dp(10);
+        tools.addView(chip("⌫  Hapus di TV", v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            key(KeyEvent.KEYCODE_DEL, TvRemote.DIR_SHORT);
+        }), weighted(true));
+        tools.addView(chip("Bersihkan", v -> et.setText("")), weighted(false));
+        box.addView(tools, tl);
+
+        TextView help = new TextView(this);
+        help.setText("Pilih dulu kolom teks di TV (mis. kolom cari YouTube), lalu ketik di sini dan ketuk Kirim.");
+        help.setTextColor(getColor(R.color.text_secondary));
+        help.setTextSize(12);
+        help.setLineSpacing(dp(2), 1f);
+        LinearLayout.LayoutParams hl = new LinearLayout.LayoutParams(-1, -2);
+        hl.topMargin = dp(10);
+        box.addView(help, hl);
+
+        AlertDialog d = dialog()
+                .setTitle("Keyboard TV")
+                .setView(wrap(box))
+                .setPositiveButton("Kirim", null)
+                .setNeutralButton("Kirim + Enter", null)
+                .setNegativeButton("Tutup", null)
+                .create();
+        kbDialog = d;
+        d.setOnShowListener(x -> {
+            d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> sendTyped(d, et, false));
+            d.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v -> sendTyped(d, et, true));
+        });
+        et.setOnEditorActionListener((tv, action, ev) -> {
+            sendTyped(d, et, true);
+            return true;
+        });
+        d.show();
+        showKeyboard(et);
+    }
+
+    private void sendTyped(AlertDialog d, EditText et, boolean enter) {
+        if (!remote.isConnected()) {
+            key(0, 0);
+            return;
+        }
+        String text = et.getText().toString();
+        remote.sendText(text);
+        if (enter) h.postDelayed(() -> key(KeyEvent.KEYCODE_ENTER, TvRemote.DIR_SHORT), 250);
+        Toast.makeText(this, enter ? "Teks dikirim + Enter" : "Teks dikirim ke TV", Toast.LENGTH_SHORT).show();
+        d.dismiss();
+    }
+
+    private TextView chip(String text, View.OnClickListener l) {
+        TextView t = new TextView(this);
+        t.setText(text);
+        t.setGravity(Gravity.CENTER);
+        t.setTextColor(getColor(R.color.accent_light));
+        t.setTextSize(13);
+        t.setBackgroundResource(R.drawable.bg_chip);
+        t.setOnClickListener(l);
+        return t;
+    }
+
+    private LinearLayout.LayoutParams weighted(boolean gapEnd) {
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, -1, 1);
+        if (gapEnd) p.setMarginEnd(dp(8));
+        return p;
     }
 
     private void setState(String text, int colorRes) {
